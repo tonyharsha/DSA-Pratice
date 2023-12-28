@@ -2,7 +2,8 @@
 
 import java.util.*;
 import java.io.*;
-
+//TC O(N^2)
+//SC O(1)
 class Solution
 {
     //Function to sort the array using bubble sort algorithm.

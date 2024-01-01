@@ -33,7 +33,8 @@ public class Solution{
 
     //Memoizaton
     //TC O(M+N)
-    //SC O(M+N)
+    //SC O(M*N)
+    
     static int Recurv(int[] weight, int[] value, int n, int capacity,int dp[][]){
         if(n==0){
             if(weight[n]<=capacity){
@@ -61,4 +62,82 @@ public class Solution{
         return Recurv(weight,value,n-1,maxWeight,dp);
 
     }
+    
+    // Tabulation
+    // TC O(M+N)
+    // SC O(M*N)
+    
+    static int Tabulation(int[] weight, int[] value, int n, int capacity){
+        int dp[][]=new int[n][capacity+1];
+        
+        Arrays.stream(dp).forEach(a->Arrays.fill(a,0));
+        for(int w=weight[0];w<=capacity;w++){
+            if(weight[0]<=capacity){
+                dp[0][w]=value[0];
+            }else{
+                dp[0][w]=0;
+            }
+        }
+
+
+        for(int index=1;index<n;index++){
+            for(int w=0;w<=capacity;w++){
+
+                int include=0;
+                if(weight[index]<=w){
+                    include=value[index]+dp[index-1][w-weight[index]];
+                }
+                int exclude=0+dp[index-1][w];
+                dp[index][w]=Math.max(include,exclude);
+            }
+        }
+        return dp[n-1][capacity];
+    }
+
+    static int knapsack(int[] weight, int[] value, int n, int maxWeight) {
+        return Tabulation(weight,value,n,maxWeight);
+
+    }
+    
+    // Space optimization
+    // TC O(M+N)
+    // SC O(2M)=> O(M)  M= weights N=n.
+    static int SpaceOptimization(int[] weight, int[] value, int n, int capacity){
+        int prev[]=new int[capacity+1];
+        int curr[]=new int[capacity+1];
+
+        Arrays.fill(prev,0);
+        Arrays.fill(curr,0);
+        
+        for(int w=weight[0];w<=capacity;w++){
+            if(weight[0]<=capacity){
+                prev[w]=value[0];
+            }else{
+                prev[w]=0;
+            }
+        }
+
+
+        for(int index=1;index<n;index++){
+            for(int w=0;w<=capacity;w++){
+
+                int include=0;
+                if(weight[index]<=w){
+                    include=value[index]+prev[w-weight[index]];
+                }
+                int exclude=0+prev[w];
+                curr[w]=Math.max(include,exclude);
+            }
+            prev=Arrays.copyOf(curr,curr.length);
+        }
+        return prev[capacity];
+    }
+
+    static int knapsack(int[] weight, int[] value, int n, int maxWeight) {
+        return SpaceOptimization(weight,value,n,maxWeight);
+
+    }
+
+
+
 }

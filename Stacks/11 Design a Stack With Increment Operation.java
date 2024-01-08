@@ -56,11 +56,16 @@ class CustomStack {
         if(top>0){
             incr[top-1]+=incr[top];
             int res=arr[top]+incr[top];
+            //while poping the element ensure that incr[top] is set to zero.
+            incr[top]=0;
             top--;
             return res;
         }else if(top==0){
+            int res=arr[top]+incr[top];
+            //while poping the element ensure that incr[top] is set to zero.
+            incr[top]=0;
             top--;
-            return arr[top+1]+incr[top+1];
+            return res;
         }
         return -1;
     }

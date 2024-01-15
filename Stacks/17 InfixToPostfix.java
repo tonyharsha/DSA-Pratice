@@ -49,3 +49,10 @@ class Solution {
         return -1;
     }
 }
+
+
+//Infix to prefix..
+/* This is similar to Infix to postfix the only change is.
+-> Reverse the String.
+-> Perform same as Infix to postfix -- The change is allow ) bracket and if you find ( bracket empty till you find ) this as peek element.
+-> Now reverse the answer.

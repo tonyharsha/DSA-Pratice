@@ -34,3 +34,10 @@ class Solution
         return st.peek();
     }
 }
+
+
+//Evaluation of Prefix 
+/* similar to Evaluation of postfix.
+-> Reverse the prefix String Now it is converted into postfix String.
+-> Evaluate the postfix expression.
+*/

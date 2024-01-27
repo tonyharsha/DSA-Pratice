@@ -39,8 +39,18 @@ class Solution {
         if(start==end) return node;
 
         node.left=constructFromPrePost(preorder,start,position-1,index+1,hm);
+        //calculating the start index for right sub tree 
+        // In case left tree is present that means left sub tree is created now we need to get the start .
+        // Since postorder is Left Right Node.
+       
         if(node.left!=null)
-           start=hm.get(node.left.val);
+           {
+             // calculating right sub tree start point
+              start=hm.get(node.left.val);
+           }
+
+        //Reculating the index=inde+(position-start).
+        //Actually problem is  this above index calculation is not satisfying all the test cases.
         node.right=constructFromPrePost(preorder,start+1,position-1,index+(position-start),hm);
         return node;
     }

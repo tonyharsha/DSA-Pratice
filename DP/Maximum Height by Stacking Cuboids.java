@@ -25,6 +25,8 @@ class Solution {
        */
 
         // use logic of LIS(Longest Increasing Subsequence)
+		//Here we have used Space optimized method not the Binary Serach method Because 
+		//Here we need to give sum of heights not length of Incresing Sequence
         int n=cuboids.length;
         int curr[]=new int[n+1];
         int next[]=new int[n+1];

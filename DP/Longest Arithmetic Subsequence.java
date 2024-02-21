@@ -110,7 +110,6 @@ class Solution {
 
     //Tabulation
     //TC O(N^2)
-    //SC O(N)
     //SC O(N^2) It is less than O(N^2) like >O(N) and <O(N^2)
     //The space complexity of the array of HashMaps is O(n), and each HashMap may store O(n) entries in the worst case
     // the overall space complexity is O(n^2) 
